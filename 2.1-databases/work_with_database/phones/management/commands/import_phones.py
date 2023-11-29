@@ -13,5 +13,8 @@ class Command(BaseCommand):
             phones = list(csv.DictReader(file, delimiter=';'))
 
         for phone in phones:
-            # TODO: Добавьте сохранение модели
-            pass
+            phone_dict = phone  # {key: val for key, val in phone.items() if key != 'id'}
+            phone_dict['slug'] = phone_dict['name'].lower().replace(' ', '-')
+            phone_db = Phone(phone_dict)
+            print(phone_db)
+            # phone_db.save()
