@@ -14,7 +14,13 @@ class Command(BaseCommand):
 
         for phone in phones:
             phone_dict = phone  # {key: val for key, val in phone.items() if key != 'id'}
-            phone_dict['slug'] = phone_dict['name'].lower().replace(' ', '-')
-            phone_db = Phone(phone_dict)
+            slug_ = phone_dict['name'].lower().replace(' ', '-')
+            phone_db = Phone(id=phone['id'],
+                             name=phone['name'],
+                             price=phone['price'],
+                             image=phone['image'],
+                             release_date=phone['release_date'],
+                             lte_exists=phone['lte_exists'],
+                             slug=slug_)
             print(phone_db)
-            # phone_db.save()
+            phone_db.save()
