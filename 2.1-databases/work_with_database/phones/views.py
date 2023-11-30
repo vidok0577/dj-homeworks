@@ -9,8 +9,10 @@ def index(request):
 
 def show_catalog(request):
     template = 'catalog.html'
-    phones = [dict(name=p.name, price=p.price) for p in Phone.objects.all()]
-    print(phones)
+    sort = request.GET.get('sort')
+    phones = Phone.objects.all().order_by('-price')
+    print(sort)
+    print(type(phones))
     context = {'phones': phones}
     return render(request, template, context)
 
