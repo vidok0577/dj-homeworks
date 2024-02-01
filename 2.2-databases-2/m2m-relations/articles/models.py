@@ -35,6 +35,5 @@ class Scope(models.Model):
     class Meta:
         ordering = ['-is_main']
 
-
     def __str__(self):
         return f'{self.article}, {self.tag}, {self.is_main}'
