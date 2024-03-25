@@ -20,8 +20,9 @@ class SensorUpdateRetrieveView(GenericAPIView, UpdateModelMixin, RetrieveModelMi
     def get(self, request, *args, **kwargs):
         result = self.retrieve(request, *args, **kwargs).data
         measurements = Measurement.objects.filter(sensor=kwargs['pk'])
-        test = MeasurementSensorsListView.as_view()
-
+        ser = MeasurementSerializer(measurements, many=True)
+        result['measumremnts'] = ser.data
+        print(ser.data)
         print(measurements)
         return Response(data=result)
 
